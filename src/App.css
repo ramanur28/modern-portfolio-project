@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500&family=Open+Sans:wght@400;700&family=Roboto:wght@400;500;700&display=swap");
+
+/* variable */
+:root {
+  --white: #dddcdc;
+  --light: #ffffff;
+  --black: #000;
+  --gray: #9d9d9d;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: block;
+  background: #000;
+}
+
+.text {
+  color: var(--white);
+  font-family: "Open Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .text {
+    font-size: 20px;
+  }
+}

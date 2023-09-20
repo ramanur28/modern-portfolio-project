@@ -1,0 +1,47 @@
+.navbar {
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.nav-links {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  margin-top: 50px;
+  text-align: end;
+}
+
+.nav-item a,
+.navbar-brand a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: 20px;
+  height: 5vh;
+}
+
+.nav-item {
+  margin-top: 20px;
+  border-bottom: 1px solid var(--light);
+  padding-right: 20px;
+}
+
+.navbar-brand {
+  padding: 25px;
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-brand a {
+  font-weight: bold;
+}
+
+.navbar-brand .toggler {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.navbar-wrapper {
+  height: 95vh;
+}
