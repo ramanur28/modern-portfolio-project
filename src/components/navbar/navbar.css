@@ -1,8 +1,9 @@
 .navbar {
+  overflow: hidden;
+  position: fixed;
   width: 100vw;
-  overflow-x: hidden;
-  position: relative;
   box-sizing: border-box;
+  transition: 0.4s;
 }
 
 .nav-links {
@@ -17,13 +18,14 @@
 .navbar-brand a {
   color: var(--light);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 15px;
   height: 5vh;
 }
 
 .nav-item {
   margin-top: 20px;
-  border-bottom: 1px solid var(--light);
+  background: linear-gradient(currentColor, currentColor) bottom / 100% 1px
+    no-repeat;
   padding-right: 20px;
 }
 
@@ -34,6 +36,7 @@
 }
 
 .navbar-brand a {
+  margin-top: 5px;
   font-weight: bold;
 }
 
@@ -42,6 +45,58 @@
   cursor: pointer;
 }
 
-.navbar-wrapper {
+.links-wrapper {
   height: 95vh;
+  transform: translateX(100%);
+  transition: 1s;
+}
+
+.links-wrapper.active {
+  transform: translateX(0);
+}
+
+.navbar.scrolled-down {
+  background-color: var(--gray);
+}
+
+@media (min-width: 1024px) {
+  .nav-links,
+  .links-wrapper {
+    flex-direction: row;
+  }
+
+  .links-wrapper {
+    height: auto;
+    transform: translate(0);
+  }
+
+  .footer,
+  .toggler {
+    display: none;
+  }
+
+  .navbar-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-links {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 50vw;
+  }
+
+  /* hover effect */
+  .nav-item {
+    background: linear-gradient(var(--light), var(--light)) bottom / 0 0.1em
+      no-repeat;
+    background-position: left bottom;
+    padding: 10px;
+  }
+
+  .nav-item:hover {
+    background-size: 100% 1px;
+    transition: 0.8s;
+  }
 }

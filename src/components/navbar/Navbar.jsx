@@ -2,12 +2,28 @@ import Footer from "../footer/Footer";
 import "./navbar.css";
 
 // framer motion
-import { motion } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import { useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const [hide, setHide] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > previous && latest > 120) {
+      setHide(true);
+    } else if (latest > 120) {
+      setHide(false);
+      setScrolled(true);
+    } else {
+      setHide(false);
+    }
+  });
 
   const toggler = {
     open: (
@@ -21,18 +37,18 @@ const Navbar = () => {
         <path
           d="M23.6008 1L36.1523 13.5515L23.6008 26.103"
           stroke="white"
-          stroke-width="2"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M0.999806 13.5517H35.8008"
           stroke="white"
-          stroke-width="2"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     ),
@@ -47,89 +63,88 @@ const Navbar = () => {
         <path
           d="M1 1H31"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
+          strokeWidth="2"
+          strokeLinecap="round"
         />
         <path
           d="M1 9.33334H31"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
+          strokeWidth="2"
+          strokeLinecap="round"
         />
         <path
           d="M1 17.6667H31"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
+          strokeWidth="2"
+          strokeLinecap="round"
         />
       </svg>
     ),
   };
 
-  const wrapperVariants = {
+  const navbarVariants = {
     open: {
-      x: 0,
-      display: "block",
-      transition: {
-        type: "ease",
-        ease: "easeInOut",
-        duration: 0.6,
-        delay: 0,
-      },
+      backgroundColor: "var(--gray)",
+      transition: "1s",
     },
     close: {
-      x: "100%",
-      display: "none",
-      transition: {
-        type: "ease",
-        ease: "easeInOut",
-        duration: 0.6,
-        display: { delay: 0.6 },
-      },
+      transition: "1s",
+    },
+
+    hide: {
+      y: "-100%",
+      transition: "1s",
+    },
+
+    show: {
+      y: 0,
+      transition: "1s",
     },
   };
+
   return (
     <motion.div
-      className="navbar text"
-      animate={
-        isOpen ? { backgroundColor: "#9D9D9D" } : { background: "transparent" }
-      }
+      className={scrolled ? "navbar text scrolled-down" : "navbar text"}
+      animate={isOpen ? "open" : "close" && hide ? "hide" : "show"}
+      variants={navbarVariants}
     >
-      <div className="navbar-brand">
-        <a href="#">Ramadhani</a>
-        <div className="toggler" onClick={() => setOpen(!isOpen)}>
-          {isOpen ? toggler.open : toggler.close}
+      <div className="navbar-wrapper">
+        <div className="navbar-brand">
+          <a href="#">Ramadhani</a>
+          <div className="toggler" onClick={() => setOpen(!isOpen)}>
+            {isOpen ? toggler.open : toggler.close}
+          </div>
+        </div>
+        <div
+          className={
+            isOpen
+              ? "links-wrapper collapse-menu active"
+              : "links-wrapper collapse-menu"
+          }
+        >
+          <div className="nav-links">
+            <div className="nav-item">
+              <a href="#">Home</a>
+            </div>
+            <div className="nav-item">
+              <a href="#">About</a>
+            </div>
+            <div className="nav-item">
+              <a href="#">Services</a>
+            </div>
+            <div className="nav-item">
+              <a href="#">Projects</a>
+            </div>
+            <div className="nav-item">
+              <a href="#">Skills</a>
+            </div>
+            <div className="nav-item">
+              <a href="#">Contacts</a>
+            </div>
+          </div>
+          <Footer />
         </div>
       </div>
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={isOpen ? "open" : "close"}
-        variants={wrapperVariants}
-        transition={{ type: "ease", ease: "easeInOut" }}
-        className="navbar-wrapper collapse-menu"
-      >
-        <div className="nav-links">
-          <div className="nav-item">
-            <a href="#">Home</a>
-          </div>
-          <div className="nav-item">
-            <a href="#">About</a>
-          </div>
-          <div className="nav-item">
-            <a href="#">Services</a>
-          </div>
-          <div className="nav-item">
-            <a href="#">Projects</a>
-          </div>
-          <div className="nav-item">
-            <a href="#">Skills</a>
-          </div>
-          <div className="nav-item">
-            <a href="#">Contacts</a>
-          </div>
-        </div>
-        <Footer />
-      </motion.div>
     </motion.div>
   );
 };
