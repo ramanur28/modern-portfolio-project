@@ -20,8 +20,8 @@ const Navbar = () => {
     } else if (latest > 120) {
       setHide(false);
       setScrolled(true);
-    } else {
-      setHide(false);
+    } else if (latest < 120) {
+      setScrolled(false);
     }
   });
 
@@ -29,13 +29,13 @@ const Navbar = () => {
     open: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="38"
-        height="28"
-        viewBox="0 0 38 28"
+        width="29"
+        height="20"
+        viewBox="0 0 29 20"
         fill="none"
       >
         <path
-          d="M23.6008 1L36.1523 13.5515L23.6008 26.103"
+          d="M18.1523 1L27.1523 9.99998L18.1523 19"
           stroke="white"
           strokeWidth="2"
           strokeMiterlimit="10"
@@ -43,7 +43,7 @@ const Navbar = () => {
           strokeLinejoin="round"
         />
         <path
-          d="M0.999806 13.5517H35.8008"
+          d="M1.94652 10.0001H26.9004"
           stroke="white"
           strokeWidth="2"
           strokeMiterlimit="10"
@@ -55,25 +55,25 @@ const Navbar = () => {
     close: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="19"
-        viewBox="0 0 32 19"
+        width="35"
+        height="20"
+        viewBox="0 0 35 20"
         fill="none"
       >
         <path
-          d="M1 1H31"
+          d="M1 1H33.4"
           stroke="white"
           strokeWidth="2"
           strokeLinecap="round"
         />
         <path
-          d="M1 9.33334H31"
+          d="M1 10H33.4"
           stroke="white"
           strokeWidth="2"
           strokeLinecap="round"
         />
         <path
-          d="M1 17.6667H31"
+          d="M1 19H33.4"
           stroke="white"
           strokeWidth="2"
           strokeLinecap="round"

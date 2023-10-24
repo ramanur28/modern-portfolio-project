@@ -1,0 +1,47 @@
+.jumbotron {
+  height: 250vh;
+  background-image: url(../../assets/jumbotro-image.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.wrapper {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.content1 {
+  width: fit-content;
+  margin: 35vh auto 0 auto;
+}
+
+.content1 h1 {
+  margin: 0;
+}
+
+.content2 {
+  width: 150px;
+  text-align: justify;
+  margin-top: 20vh;
+}
+
+@media (min-width: 600px) {
+  .content1 {
+    margin: 30vh 10vw 0 auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .content1 {
+    margin: 20vh 5vw 0 auto;
+  }
+
+  .content2 {
+    width: 250px;
+  }
+}
